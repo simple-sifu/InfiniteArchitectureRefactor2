@@ -2,7 +2,7 @@ import "./styles.css";
 import * as React from "react";
 import CourseComponent from "./Components/CourseComponent";
 
-const App = (props) => {
+const App = props => {
   const data = {
     courses: [
       {
@@ -30,19 +30,19 @@ const App = (props) => {
   };
 
   const viewModel = {};
-  viewModel.courses = data.courses.map((course) => {
+  viewModel.courses = data.courses.map(course => {
     return {
-      title: course.name
+      title: `${course.name}  | (bonus inc. ${course.freebies ? "y" : "n"})`
     };
   });
 
   return (
     <>
-      {viewModel.courses.map((course) => {
+      {viewModel.courses.map(course => {
         return (
           <div>
-            {/* {course.name} | (bonus inc. {course.freebies ? <>y</> : <>n</>}) */}
             {course.title}
+            <CourseComponent course={course} />
             {/* <CourseComponent course={course} /> */}
           </div>
         );
