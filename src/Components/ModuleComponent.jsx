@@ -5,12 +5,15 @@ export const ModuleComponent = props => {
   return (
     <>
       <p>
-        &nbsp; >> &nbsp; {props.module.name}
-        {props.module.resources && (
+        {props.vm.title}
+        {props.vm.haveDownloadlink && (
+          <DownloadsComponent vm={props.vm.downloadlink} />
+        )}
+        {/* {props.module.resources && (
           <>
             <DownloadsComponent link={props.module.assets[0]} />
           </>
-        )}
+        )} */}
       </p>
     </>
   );

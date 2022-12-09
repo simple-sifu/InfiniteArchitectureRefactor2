@@ -4,14 +4,17 @@ import ModuleComponent from "./ModuleComponent";
 export const CourseComponent = props => {
   return (
     <>
-      {props.course.modules &&
+      {props.vm.modules.map(moduleVm => {
+        return <ModuleComponent vm={moduleVm} />;
+      })}
+      {/* {props.course.modules &&
         props.course.modules.map(module => {
           return (
             <>
               <ModuleComponent module={module} />
             </>
           );
-        })}
+        })} */}
     </>
   );
 };

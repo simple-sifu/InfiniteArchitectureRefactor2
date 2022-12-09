@@ -30,19 +30,30 @@ const App = props => {
   };
 
   const viewModel = {};
-  viewModel.courses = data.courses.map(course => {
+  viewModel.courses = data.courses.map(courseVm => {
     return {
-      title: `${course.name}  | (bonus inc. ${course.freebies ? "y" : "n"})`
+      title: `${courseVm.name}  | (bonus inc. ${
+        courseVm.freebies ? "y" : "n"
+      })`,
+      modules: !courseVm.modules
+        ? []
+        : courseVm.modules.map(moduleVm => {
+            return {
+              title: ">> " + moduleVm.name,
+              haveDownloadlink: !!moduleVm.resources,
+              downloadlink: moduleVm.assets[0]
+            };
+          })
     };
   });
 
   return (
     <>
-      {viewModel.courses.map(course => {
+      {viewModel.courses.map(courseVm => {
         return (
-          <div>
-            {course.title}
-            <CourseComponent course={course} />
+          <div key={courseVm.title}>
+            {courseVm.title}
+            <CourseComponent vm={courseVm} />
             {/* <CourseComponent course={course} /> */}
           </div>
         );
